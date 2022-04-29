@@ -45,7 +45,7 @@
 
     <distributionManagement>
         <repository>
-            <id>cwa-github</id>
+            <id>github</id>
             <url>https://maven.pkg.github.com/corona-warn-app/cwa-parent</url>
         </repository>
     </distributionManagement>
