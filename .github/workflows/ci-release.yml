@@ -48,7 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
-      APP_VERSION: ${APP_VERSION}
+      APP_VERSION: ${{ env.APP_VERSION }}
   update-dependency-in-test-project:
     needs:
       - build
@@ -89,13 +89,13 @@ jobs:
               title: 'Chore: Update CWA-Parent to ' + process.env.APP_VERSION,
               head: 'chore/update-cwa-parent-' + process.env.APP_VERSION,
               base: 'main',
-              body: `##Update the parent pom (cwa-parent) to the last released version.
-                    
-                    This PR will update several dependencies within this project.
-                    Please do a full integration test before merging this PR.
-                    
-                    Also please have a look on the [Release Notes](https://github.com/corona-warn-app/cwa-parent/releases/tag/${process.env.APP_VERSION}) of this new CWA-Parent version.`,
+              body: `### Update the parent pom (cwa-parent) to the last released version.
+              
+              This PR will update several dependencies within this project.
+              Please do a full integration test before merging this PR.
+              
+              Also please have a look on the [Release Notes](https://github.com/corona-warn-app/cwa-parent/releases/tag/${process.env.APP_VERSION}) of this new CWA-Parent version.`,
               maintainer_can_modify: true,
               draft: false,
             });
-            console.log(pr);
+            pr.then(console.log);
