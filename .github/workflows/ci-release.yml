@@ -71,3 +71,21 @@ jobs:
           git config user.email github-actions@github.com
           git commit -a --allow-empty -m "Update CWA-Parent to ${GITHUB_REF/refs\/tags\/}"
           git push --set-upstream origin chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}
+      - name: Create Pull Request
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GPR_TOKEN_F11H }}
+          script: |
+            const pr = github.rest.pulls.create({
+              owner: 'github-actions',
+              repo: 'corona-warn-app/felix-test-service',
+              title: 'Chore: Update CWA-Parent to ${GITHUB_REF/refs\/tags\/}',
+              head: 'chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}',
+              base: 'main',
+              body: '##Update the parent pom (cwa-parent) to the last released version.\n\n'
+            + "This PR will update several dependencies within this project. Please do a full integration test before merging this PR.\n'
+            + "Also please have a look on the Release Notes of the new CWA-Parent version: https://github.com/corona-warn-app/cwa-parent/releases/tag/${GITHUB_REF/refs\/tags\/}',
+              maintainer_can_modify: true,
+              draft: false,
+            });
+            console.log(pr);
