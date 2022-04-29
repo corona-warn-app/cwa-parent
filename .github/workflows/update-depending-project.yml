@@ -14,8 +14,8 @@ on:
       LABEL_NAME:
         type: string
         required: true
-      GITHUB_ADMIN_TOKEN:
-        type: string
+    secrets:
+      GH_ADMIN_TOKEN:
         required: true
 jobs:
   update-depending-project:
@@ -25,14 +25,13 @@ jobs:
       REPO_OWNER: ${{ inputs.REPO_OWNER }}
       REPO_NAME: ${{ inputs.REPO_NAME }}
       LABEL_NAME: ${{ inputs.LABEL_NAME }}
-      GITHUB_ADMIN_TOKEN: ${{ inputs.GITHUB_ADMIN_TOKEN }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           ref: main
-          token: ${{ env.GITHUB_ADMIN_TOKEN }}
+          token: ${{ secrets.GH_ADMIN_TOKEN }}
       - name: Create and Checkout new Branch
         run: git checkout -b chore/update-cwa-parent-${{ env.APP_VERSION }}
       - name: Set new Parent Version
@@ -49,7 +48,7 @@ jobs:
       - name: Create Pull Request
         uses: actions/github-script@v6
         with:
-          github-token: ${{ env.GITHUB_ADMIN_TOKEN }}
+          github-token: ${{ secrets.GH_ADMIN_TOKEN }}
           script: |
             const pr = github.rest.pulls.create({
               owner: process.env.REPO_OWNER,

@@ -49,14 +49,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       APP_VERSION: ${{ env.APP_VERSION }}
-      GITHUB_ADMIN_TOKEN: ${{ secrets.GPR_TOKEN_F11H }}
   update-dependency-in-test-project:
     needs:
       - build
     uses: corona-warn-app/cwa-parent/.github/workflows/update-depending-project.yml@main
     with:
       APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
-      GITHUB_ADMIN_TOKEN: ${{ needs.build.outputs.GITHUB_ADMIN_TOKEN }}
       REPO_OWNER: corona-warn-app
       REPO_NAME: felix-test-service
       LABEL_NAME: enhancement
