@@ -58,4 +58,5 @@ jobs:
       REPO_OWNER: corona-warn-app
       REPO_NAME: felix-test-service
       LABEL_NAME: enhancement
+    secrets:
       GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
