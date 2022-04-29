@@ -57,6 +57,7 @@ jobs:
       APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
       REPO_OWNER: corona-warn-app
       REPO_NAME: felix-test-service
+      LABEL_NAME: enhancement
       GH_TOKEN: ${{ secrets.GPR_TOKEN_F11H }}
     steps:
       - name: Checkout Repository
@@ -98,4 +99,14 @@ jobs:
               maintainer_can_modify: true,
               draft: false,
             });
-            pr.then(console.log);
+            pr.then(response => {
+              
+              if (response.status === 201) {
+                github.rest.issues.addLabels({
+                  owner: process.env.REPO_OWNER,
+                  repo: process.env.REPO_NAME,
+                  number: response.data.number,
+                  labels: [ { name: process.env.LABEL_NAME } ]            
+                });
+              }  
+            });
