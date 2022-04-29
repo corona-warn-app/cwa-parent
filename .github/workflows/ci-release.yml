@@ -54,7 +54,7 @@ jobs:
       - build
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: ${needs.build.outputs.APP_VERSION}
+      APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
       REPO_OWNER: corona-warn-app
       REPO_NAME: felix-test-service
       GH_TOKEN: ${{ secrets.GPR_TOKEN_F11H }}
