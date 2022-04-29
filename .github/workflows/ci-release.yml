@@ -71,7 +71,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install xmlstarlet -y
-          xmlstarlet edit --update "/project/parent/version" --value "${{ env.APP_VERSION }}" pom.xml
+          xmlstarlet edit -P -I --update _:project/_:parent/_:version --value ${{ env.APP_VERSION }} pom.xml
       - name: Commit and Push changes
         run: |
           git config user.name github-actions
