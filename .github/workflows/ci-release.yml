@@ -105,7 +105,7 @@ jobs:
                   owner: process.env.REPO_OWNER,
                   repo: process.env.REPO_NAME,
                   issue_number: response.data.number,
-                  labels: [ { name: process.env.LABEL_NAME } ]            
+                  labels: [ process.env.LABEL_NAME ]            
                 });
               }  
             });
