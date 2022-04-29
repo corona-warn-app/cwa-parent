@@ -57,6 +57,7 @@ jobs:
         with:
           repository: corona-warn-app/felix-test-service
           ref: main
+          token: ${{ secrets.GPR_TOKEN_F11H }}
       - name: Create and Checkout new Branch
         run: git checkout -b chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}
       - name: Set new Parent Version
