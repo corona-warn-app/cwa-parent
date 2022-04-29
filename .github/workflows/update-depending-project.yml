@@ -1,0 +1,78 @@
+name: update-depending-project
+on:
+  workflow_call:
+    inputs:
+      APP_VERSION:
+        type: string
+        required: true
+      REPO_OWNER:
+        type: string
+        required: true
+      REPO_NAME:
+        type: string
+        required: true
+      LABEL_NAME:
+        type: string
+        required: true
+      GH_TOKEN:
+        type: string
+        required: true
+jobs:
+  update-depending-project:
+    runs-on: ubuntu-latest
+    env:
+      APP_VERSION: ${{ inputs.APP_VERSION }}
+      REPO_OWNER: ${{ inputs.REPO_OWNER }}
+      REPO_NAME: ${{ inputs.REPO_NAME }}
+      LABEL_NAME: ${{ inputs.LABEL_NAME }}
+      GH_TOKEN: ${{ inputs.GH_TOKEN }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
+          ref: main
+          token: ${{ env.GH_TOKEN }}
+      - name: Create and Checkout new Branch
+        run: git checkout -b chore/update-cwa-parent-${{ env.APP_VERSION }}
+      - name: Set new Parent Version
+        run: |
+          sudo apt-get update
+          sudo apt-get install xmlstarlet -y
+          xmlstarlet edit -P -L --update _:project/_:parent/_:version --value ${{ env.APP_VERSION }} pom.xml
+      - name: Commit and Push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -a --allow-empty -m "Update CWA-Parent to ${{ env.APP_VERSION }}"
+          git push --set-upstream origin chore/update-cwa-parent-${{ env.APP_VERSION}}
+      - name: Create Pull Request
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ env.GH_TOKEN }}
+          script: |
+            const pr = github.rest.pulls.create({
+              owner: process.env.REPO_OWNER,
+              repo: process.env.REPO_NAME,
+              title: 'Chore: Update CWA-Parent to ' + process.env.APP_VERSION,
+              head: 'chore/update-cwa-parent-' + process.env.APP_VERSION,
+              base: 'main',
+              body: `### Update the parent pom (cwa-parent) to the last released version.
+              
+              This PR will update several dependencies within this project.
+              Please do a full integration test before merging this PR.
+              
+              Also please have a look on the [Release Notes](https://github.com/corona-warn-app/cwa-parent/releases/tag/${process.env.APP_VERSION}) of this new CWA-Parent version.`,
+              maintainer_can_modify: true,
+              draft: false,
+            });
+            pr.then(response => {
+              if (response.status === 201) {
+                github.rest.issues.addLabels({
+                  owner: process.env.REPO_OWNER,
+                  repo: process.env.REPO_NAME,
+                  issue_number: response.data.number,
+                  labels: [ process.env.LABEL_NAME ]            
+                });
+              }  
+            });
