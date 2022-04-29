@@ -100,12 +100,11 @@ jobs:
               draft: false,
             });
             pr.then(response => {
-              console.log(response.data.number);
               if (response.status === 201) {
                 github.rest.issues.addLabels({
                   owner: process.env.REPO_OWNER,
                   repo: process.env.REPO_NAME,
-                  number: response.data.number,
+                  issue_number: response.data.number,
                   labels: [ { name: process.env.LABEL_NAME } ]            
                 });
               }  
