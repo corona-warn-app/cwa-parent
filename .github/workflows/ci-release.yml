@@ -83,8 +83,8 @@ jobs:
               head: 'chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}',
               base: 'main',
               body: '##Update the parent pom (cwa-parent) to the last released version.\n\n'
-            + "This PR will update several dependencies within this project. Please do a full integration test before merging this PR.\n'
-            + "Also please have a look on the Release Notes of the new CWA-Parent version: https://github.com/corona-warn-app/cwa-parent/releases/tag/${GITHUB_REF/refs\/tags\/}',
+            + 'This PR will update several dependencies within this project. Please do a full integration test before merging this PR.\n'
+            + 'Also please have a look on the Release Notes of the new CWA-Parent version: https://github.com/corona-warn-app/cwa-parent/releases/tag/${GITHUB_REF/refs\/tags\/}',
               maintainer_can_modify: true,
               draft: false,
             });
