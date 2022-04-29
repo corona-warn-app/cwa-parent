@@ -66,18 +66,18 @@ jobs:
           ref: main
           token: ${GH_TOKEN}
       - name: Create and Checkout new Branch
-        run: git checkout -b chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}
+        run: git checkout -b chore/update-cwa-parent-${APP_VERSION}
       - name: Set new Parent Version
         run: |
           sudo apt-get update
           sudo apt-get install xmlstarlet -y
-          xmlstarlet edit --update "/project/parent/version" --value "${GITHUB_REF/refs\/tags\/}" pom.xml
+          xmlstarlet edit --update "/project/parent/version" --value "${APP_VERSION}" pom.xml
       - name: Commit and Push changes
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -a --allow-empty -m "Update CWA-Parent to ${GITHUB_REF/refs\/tags\/}"
-          git push --set-upstream origin chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}
+          git commit -a --allow-empty -m "Update CWA-Parent to ${APP_VERSION}"
+          git push --set-upstream origin chore/update-cwa-parent-${APP_VERSION}
       - name: Create Pull Request
         uses: actions/github-script@v6
         with:
