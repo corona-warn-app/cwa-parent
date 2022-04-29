@@ -17,4 +17,56 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GREN_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v1
+        env:
+          cache-name: m2
+        with:
+          path: ~/.m2/repository
+          key: ${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ env.cache-name }}-
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: version
+        run: >-
+          APP_SHA=$(git rev-parse --short ${GITHUB_SHA});
+          APP_TAG=${GITHUB_REF/refs\/tags\/}
+          APP_VERSION=${APP_TAG};
+          echo "APP_SHA=${APP_SHA}" >> ${GITHUB_ENV};
+          echo "APP_TAG=${APP_TAG}" >> ${GITHUB_ENV};
+          echo "APP_VERSION=${APP_VERSION}" >> ${GITHUB_ENV};
+      - name: mvn version
+        run: mvn --batch-mode versions:set -DgenerateBackupPoms=false -DnewVersion=${VERSION}
+      - name: mvn deploy
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  update-dependency-in-test-project:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          repository: corona-warn-app/felix-test-service
+          ref: main
+      - name: Create and Checkout new Branch
+        run: git checkout -b chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}
+      - name: Set new Parent Version
+        run: |
+          sudo apt-get update
+          sudo apt-get install xmlstarlet -y
+          xmlstarlet edit --update "/project/parent/version" --value "${GITHUB_REF/refs\/tags\/}" pom.xml
+      - name: Commit and Push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -a --allow-empty -m "Update CWA-Parent to ${GITHUB_REF/refs\/tags\/}"
+          git push --set-upstream origin chore/update-cwa-parent-${GITHUB_REF/refs\/tags\/}
