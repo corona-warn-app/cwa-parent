@@ -42,7 +42,7 @@ jobs:
           echo "APP_TAG=${APP_TAG}" >> ${GITHUB_ENV};
           echo "APP_VERSION=${APP_VERSION}" >> ${GITHUB_ENV};
       - name: mvn version
-        run: mvn --batch-mode versions:set -DgenerateBackupPoms=false -DnewVersion=${VERSION}
+        run: mvn --batch-mode versions:set -DgenerateBackupPoms=false -DnewVersion=${APP_VERSION}
       - name: mvn deploy
         run: mvn --batch-mode deploy
         env:
