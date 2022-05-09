@@ -49,14 +49,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       APP_VERSION: ${{ env.APP_VERSION }}
-  update-dependency-in-test-project:
+  update-dependency-in-cwa-verification-server:
     needs:
       - build
     uses: corona-warn-app/cwa-parent/.github/workflows/update-depending-project.yml@main
     with:
       APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
       REPO_OWNER: corona-warn-app
-      REPO_NAME: felix-test-service
-      LABEL_NAME: enhancement
+      REPO_NAME: cwa-verification-server
+      LABEL_NAME: chore
     secrets:
       GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
