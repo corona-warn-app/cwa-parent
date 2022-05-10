@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
 
+    <suppress>
+        <notes>Updating of Keycloak Lib is not possible at the moment. Security risk is not affecting CWA components.</notes>
+        <cve>CVE-2022-1466</cve>
+        <cve>CVE-2021-20323</cve>
+    </suppress>
+
 </suppressions>
