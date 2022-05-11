@@ -228,6 +228,13 @@
                 <artifactId>modelmapper-spring</artifactId>
                 <version>3.1.0</version>
             </dependency>
+
+            <!-- AWS -->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-s3</artifactId>
+                <version>1.12.201</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -346,7 +353,18 @@
                 <plugin>
                     <groupId>org.springdoc</groupId>
                     <artifactId>springdoc-openapi-maven-plugin</artifactId>
-                    <version>1.1</version>
+                    <version>1.4</version>
+                    <configuration>
+                        <apiDocsUrl>http://localhost:8080/v3/api-docs</apiDocsUrl>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>integration-test</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
