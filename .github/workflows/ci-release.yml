@@ -3,8 +3,6 @@ on:
   release:
     types:
       - created
-      - edited
-      - prereleased
 jobs:
   release-notes:
     runs-on: ubuntu-latest
@@ -61,3 +59,15 @@ jobs:
       TARGET_BRANCH: master
     secrets:
       GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
+  update-dependency-in-cwa-quick-test-backend:
+    needs:
+      - build
+    uses: corona-warn-app/cwa-parent/.github/workflows/update-depending-project.yml@main
+    with:
+      APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
+      REPO_OWNER: corona-warn-app
+      REPO_NAME: cwa-quick-test-backend
+      LABEL_NAME: enhancement
+      TARGET_BRANCH: master
+    secrets:
+      GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}      
