@@ -58,5 +58,6 @@ jobs:
       REPO_OWNER: corona-warn-app
       REPO_NAME: cwa-verification-server
       LABEL_NAME: chore
+      TARGET_BRANCH: master
     secrets:
       GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}

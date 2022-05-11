@@ -14,6 +14,9 @@ on:
       LABEL_NAME:
         type: string
         required: true
+      TARGET_BRANCH:
+        type: string
+        required: true
     secrets:
       GH_ADMIN_TOKEN:
         required: true
@@ -25,12 +28,13 @@ jobs:
       REPO_OWNER: ${{ inputs.REPO_OWNER }}
       REPO_NAME: ${{ inputs.REPO_NAME }}
       LABEL_NAME: ${{ inputs.LABEL_NAME }}
+      TARGET_BRANCH: ${{ inputs.TARGET_BRANCH }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
-          ref: main
+          ref: ${{ env.TARGET_BRANCH }}
           token: ${{ secrets.GH_ADMIN_TOKEN }}
       - name: Create and Checkout new Branch
         run: git checkout -b chore/update-cwa-parent-${{ env.APP_VERSION }}
@@ -55,7 +59,7 @@ jobs:
               repo: process.env.REPO_NAME,
               title: 'Chore: Update CWA-Parent to ' + process.env.APP_VERSION,
               head: 'chore/update-cwa-parent-' + process.env.APP_VERSION,
-              base: 'main',
+              base: process.env.TARGET_BRANCH,
               body: `### Update the parent pom (cwa-parent) to the last released version.
               
               This PR will update several dependencies within this project.
