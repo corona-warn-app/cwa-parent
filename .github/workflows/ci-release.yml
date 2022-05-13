@@ -106,4 +106,16 @@ jobs:
       LABEL_NAME: enhancement
       TARGET_BRANCH: master
     secrets:
-      GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}      
+      GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
+  update-dependency-in-cwa-verification-portal:
+    needs:
+      - build
+    uses: corona-warn-app/cwa-parent/.github/workflows/update-depending-project.yml@main
+    with:
+      APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
+      REPO_OWNER: corona-warn-app
+      REPO_NAME: cwa-result-gatherer
+      LABEL_NAME: chore
+      TARGET_BRANCH: master
+    secrets:
+      GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}          
