@@ -43,6 +43,7 @@
         <module>keycloak</module>
         <module>psql-persistence</module>
         <module>mysql-persistence</module>
+        <module>sap-cf</module>
     </modules>
 
     <distributionManagement>
@@ -87,11 +88,11 @@
             </dependency>
 
 
-            <!-- General Libs -->
+            <!-- Lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
+                <version>1.18.24</version><!-- Also update version of lombok in Maven Compiler Plugin -->
             </dependency>
 
 
@@ -125,18 +126,23 @@
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
-                <version>0.11.3</version>
+                <version>0.11.5</version>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-impl</artifactId>
-                <version>0.11.3</version>
+                <version>0.11.5</version>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-jackson</artifactId>
-                <version>0.11.3</version>
+                <version>0.11.5</version>
                 <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>9.22</version>
             </dependency>
 
 
@@ -235,6 +241,30 @@
                 <artifactId>aws-java-sdk-s3</artifactId>
                 <version>1.12.201</version>
             </dependency>
+
+            <!-- SAP Cloud Foundry -->
+            <dependency>
+                <groupId>io.pivotal.cfenv</groupId>
+                <artifactId>java-cfenv-boot</artifactId>
+                <version>2.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.cloud.sdk.cloudplatform</groupId>
+                <artifactId>scp-cf</artifactId>
+                <version>3.67.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.hcp.cf.logging</groupId>
+                <artifactId>cf-java-logging-support-logback</artifactId>
+                <version>3.6.0</version>
+            </dependency>
+
+            <!-- Mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>1.4.2.Final</version><!-- Also update version of lombok in Maven Compiler Plugin -->
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -259,6 +289,26 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M6</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>1.18.24</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>1.4.2.Final</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
                 </plugin>
 
                 <plugin>
