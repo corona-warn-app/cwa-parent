@@ -4,7 +4,9 @@
     <suppress>
         <notes>Updating of Keycloak Lib is not possible at the moment. Security risk is not affecting CWA components.</notes>
         <cve>CVE-2022-1466</cve>
+        <cve>CVE-2022-1970</cve>
         <cve>CVE-2021-20323</cve>
+        <cve>CVE-2020-14359</cve>
     </suppress>
 
     <suppress>
