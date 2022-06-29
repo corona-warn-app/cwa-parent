@@ -59,7 +59,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.6.7</version>
+                <version>2.7.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -73,7 +73,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.3</version>
                 <exclusions>
                     <exclusion>
                         <groupId>commons-io</groupId>
@@ -84,7 +84,7 @@
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
-                <version>1.6.8</version>
+                <version>1.6.9</version>
             </dependency>
 
 
@@ -100,12 +100,12 @@
             <dependency>
                 <groupId>net.javacrumbs.shedlock</groupId>
                 <artifactId>shedlock-spring</artifactId>
-                <version>4.34.0</version>
+                <version>4.37.0</version>
             </dependency>
             <dependency>
                 <groupId>net.javacrumbs.shedlock</groupId>
                 <artifactId>shedlock-provider-jdbc-template</artifactId>
-                <version>4.34.0</version>
+                <version>4.37.0</version>
             </dependency>
 
             <!-- Commons IO -->
@@ -142,7 +142,7 @@
             <dependency>
                 <groupId>com.nimbusds</groupId>
                 <artifactId>nimbus-jose-jwt</artifactId>
-                <version>9.22</version>
+                <version>9.23</version>
             </dependency>
 
 
@@ -150,12 +150,12 @@
             <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
-                <version>4.9.1</version>
+                <version>4.12.0</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>2.1.212</version>
+                <version>2.1.214</version>
                 <scope>runtime</scope>
             </dependency>
 
@@ -239,31 +239,31 @@
             <dependency>
                 <groupId>com.amazonaws</groupId>
                 <artifactId>aws-java-sdk-s3</artifactId>
-                <version>1.12.201</version>
+                <version>1.12.250</version>
             </dependency>
 
             <!-- SAP Cloud Foundry -->
             <dependency>
                 <groupId>io.pivotal.cfenv</groupId>
                 <artifactId>java-cfenv-boot</artifactId>
-                <version>2.3.0</version>
+                <version>2.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.sap.cloud.sdk.cloudplatform</groupId>
                 <artifactId>scp-cf</artifactId>
-                <version>3.67.0</version>
+                <version>3.70.0</version>
             </dependency>
             <dependency>
                 <groupId>com.sap.hcp.cf.logging</groupId>
                 <artifactId>cf-java-logging-support-logback</artifactId>
-                <version>3.6.0</version>
+                <version>3.6.2</version>
             </dependency>
 
             <!-- Mapstruct -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
-                <version>1.4.2.Final</version><!-- Also update version of lombok in Maven Compiler Plugin -->
+                <version>1.5.2.Final</version><!-- Also update version of lombok in Maven Compiler Plugin -->
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -274,7 +274,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>2.6.7</version>
+                    <version>2.7.1</version>
                     <executions>
                         <execution>
                             <goals>
@@ -288,13 +288,13 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M6</version>
+                    <version>3.0.0-M7</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.10.1</version>
                     <configuration>
                         <annotationProcessorPaths>
                             <path>
@@ -305,7 +305,7 @@
                             <path>
                                 <groupId>org.mapstruct</groupId>
                                 <artifactId>mapstruct-processor</artifactId>
-                                <version>1.4.2.Final</version>
+                                <version>1.5.2.Final</version>
                             </path>
                         </annotationProcessorPaths>
                     </configuration>
@@ -358,7 +358,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>license-maven-plugin</artifactId>
-                    <version>2.0.0</version>
+                    <version>4.1</version>
                     <configuration>
                         <includes>**/*.java</includes>
                         <copyrightOwners>${project.organization.name} and all other contributors</copyrightOwners>
@@ -380,7 +380,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>7.1.0</version>
+                    <version>7.1.1</version>
                     <configuration>
                         <suppressionFile>./owasp/suppressions.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
@@ -391,7 +391,7 @@
                 <plugin>
                     <groupId>org.asciidoctor</groupId>
                     <artifactId>asciidoctor-maven-plugin</artifactId>
-                    <version>1.5.8</version>
+                    <version>2.2.2</version>
                     <dependencies>
                         <dependency>
                             <groupId>org.springframework.restdocs</groupId>
