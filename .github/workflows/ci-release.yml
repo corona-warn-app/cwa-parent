@@ -114,7 +114,7 @@ jobs:
     with:
       APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
       REPO_OWNER: corona-warn-app
-      REPO_NAME: cwa-result-gatherer
+      REPO_NAME: cwa-verification-portal
       LABEL_NAME: chore
       TARGET_BRANCH: master
     secrets:
