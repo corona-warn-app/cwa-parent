@@ -7,4 +7,14 @@
         <cve>CVE-2021-20323</cve>
     </suppress>
 
+    <suppress>
+        <notes>CVE is matching for Spring Security 5.3.x, but we have 5.7.x</notes>
+        <cve>CVE-2020-5408</cve>
+    </suppress>
+
+    <suppress>
+        <notes>CVE is matching for Spring Framework up to 5.3.20, but we have 5.3.21</notes>
+        <cve>CVE-2016-1000027</cve>
+    </suppress>
+
 </suppressions>
