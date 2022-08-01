@@ -23,6 +23,11 @@
         <notes>False Positive matches</notes>
         <cve>CVE-2022-31514</cve>
         <cve>CVE-2022-2393</cve>
-    </suppress>        
+    </suppress>
+    
+    <suppress>
+        <notes>Keycloak Update is currentlyn not possible</notes>
+        <cve>CVE-2022-1245</cve>
+    </suppress>
 
 </suppressions>
