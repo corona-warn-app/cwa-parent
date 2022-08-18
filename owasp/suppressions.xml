@@ -26,8 +26,9 @@
     </suppress>
     
     <suppress>
-        <notes>Keycloak Update is currentlyn not possible</notes>
+        <notes>Keycloak Update is currently not possible</notes>
         <cve>CVE-2022-1245</cve>
+        <cve>CVE-2022-2668</cve>
     </suppress>
 
 </suppressions>
