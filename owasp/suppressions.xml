@@ -29,6 +29,12 @@
         <notes>Keycloak Update is currently not possible</notes>
         <cve>CVE-2022-1245</cve>
         <cve>CVE-2022-2668</cve>
+        <cve>CVE-2021-3827</cve>
+    </suppress>
+
+    <suppress>
+        <notes>SnakeYML False Positive Matcher (CVE is up to 1.32, but also matches for 1.33)</notes>
+        <cve>CVE-2022-38752</cve>
     </suppress>
 
 </suppressions>
