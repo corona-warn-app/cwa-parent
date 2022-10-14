@@ -220,7 +220,18 @@
             <dependency>
                 <groupId>com.opencsv</groupId>
                 <artifactId>opencsv</artifactId>
-                <version>5.7.0</version>
+                <version>5.7.0</version> <!-- When updating to > 5.7.0 remove exclusion of commons-text -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-text</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>[1.10.0)</version>
             </dependency>
 
 
