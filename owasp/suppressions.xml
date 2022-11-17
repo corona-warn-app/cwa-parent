@@ -2,14 +2,6 @@
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
 
     <suppress>
-        <notes>Updating of Keycloak Lib is not possible at the moment. Security risk is not affecting CWA components.</notes>
-        <cve>CVE-2022-1466</cve>
-        <cve>CVE-2022-1970</cve>
-        <cve>CVE-2021-20323</cve>
-        <cve>CVE-2020-14359</cve>
-    </suppress>
-
-    <suppress>
         <notes>CVE is matching for Spring Security 5.3.x, but we have 5.7.x</notes>
         <cve>CVE-2020-5408</cve>
     </suppress>
@@ -23,13 +15,6 @@
         <notes>False Positive matches</notes>
         <cve>CVE-2022-31514</cve>
         <cve>CVE-2022-2393</cve>
-    </suppress>
-    
-    <suppress>
-        <notes>Keycloak Update is currently not possible</notes>
-        <cve>CVE-2022-1245</cve>
-        <cve>CVE-2022-2668</cve>
-        <cve>CVE-2021-3827</cve>
     </suppress>
 
     <suppress>
