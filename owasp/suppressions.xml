@@ -22,4 +22,15 @@
         <cve>CVE-2022-38752</cve>
     </suppress>
 
+    <suppress>
+        <notes>This CVE is only affecting Keycloak Server not the Lib. (https://bugzilla.redhat.com/show_bug.cgi?id=2141404)</notes>
+        <cve>CVE-2022-3916</cve>
+    </suppress>
+
+    <suppress>
+        <notes>The affected libs are just used for unit-testing.</notes>
+        <cve>CVE-2022-31690</cve>
+        <cve>CVE-2022-31692</cve>
+    </suppress>
+
 </suppressions>
