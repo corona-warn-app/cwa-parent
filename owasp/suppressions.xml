@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
-
     <suppress>
-        <notes>CVE is matching for Spring Security 5.3.x, but we have 5.7.x</notes>
-        <cve>CVE-2020-5408</cve>
+        <notes>Both CVE are matching for eclipse ide</notes>
+        <cve>CVE-2008-7271</cve>
+        <cve>CVE-2010-4647</cve>
     </suppress>
 
     <suppress>
-        <notes>CVE is matching for Spring Framework up to 5.3.20, but we have 5.3.21</notes>
-        <cve>CVE-2016-1000027</cve>
-    </suppress>
-    
-    <suppress>
-        <notes>False Positive matches</notes>
-        <cve>CVE-2022-31514</cve>
-        <cve>CVE-2022-2393</cve>
-    </suppress>
-
-    <suppress>
-        <notes>SnakeYML False Positive Matcher (CVE is up to 1.32, but also matches for 1.33)</notes>
-        <cve>CVE-2022-38752</cve>
-    </suppress>
-
-    <suppress>
-        <notes>This CVE is only affecting Keycloak Server not the Lib. (https://bugzilla.redhat.com/show_bug.cgi?id=2141404)</notes>
-        <cve>CVE-2022-3916</cve>
-    </suppress>
-
-    <suppress>
-        <notes>The affected libs are just used for unit-testing.</notes>
-        <cve>CVE-2022-31690</cve>
-        <cve>CVE-2022-31692</cve>
+        <notes>no YAML content from users is parsed within this service</notes>
+        <cve>CVE-2022-1471</cve>
     </suppress>
 
 </suppressions>
