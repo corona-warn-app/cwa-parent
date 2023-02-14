@@ -11,4 +11,14 @@
         <cve>CVE-2022-1471</cve>
     </suppress>
 
+    <suppress>
+        <notes>H2 is only used for testing, not production</notes>
+        <cve>CVE-2022-45868</cve>
+    </suppress>
+
+    <suppress>
+        <notes>False positive. CVE is matching for hutools. OWASP Check matches for json-lib</notes>
+        <cve>CVE-2022-45688</cve>
+    </suppress>
+
 </suppressions>
