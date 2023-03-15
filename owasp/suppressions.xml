@@ -22,4 +22,9 @@
         <cve>CVE-2022-45688</cve>
     </suppress>
 
+    <suppress>
+        <notes>False positive. guava version is higher than 30.0 and this CVE should not match</notes>
+        <cve>CVE-2020-8908</cve>
+    </suppress>
+
 </suppressions>
