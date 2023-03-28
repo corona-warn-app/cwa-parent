@@ -62,6 +62,35 @@
                 <version>2.7.10</version><!-- Also update version of Spring Boot in Spring Boot Plugin -->
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.vault</groupId>
+                        <artifactId>spring-vault-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-fileupload</groupId>
+                        <artifactId>commons-fileupload</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.vault</groupId>
+                <artifactId>spring-vault-core</artifactId>
+                <version>3.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.5</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -384,10 +413,11 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>7.3.1</version>
+                    <version>8.2.1</version>
                     <configuration>
                         <suppressionFile>./owasp/suppressions.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+                        <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
                     </configuration>
                 </plugin>
 

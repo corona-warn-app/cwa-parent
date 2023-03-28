@@ -25,12 +25,29 @@
     <suppress>
         <notes>This CVE is only affecting Keycloak Server not the Lib. (https://bugzilla.redhat.com/show_bug.cgi?id=2141404)</notes>
         <cve>CVE-2022-3916</cve>
+        <cve>CVE-2023-0105</cve>
     </suppress>
 
     <suppress>
         <notes>The affected libs are just used for unit-testing.</notes>
         <cve>CVE-2022-31690</cve>
         <cve>CVE-2022-31692</cve>
+    </suppress>
+
+    <suppress>
+        <notes>H2 is only used for testing. No newer version available.</notes>
+        <cve>CVE-2022-45868</cve>
+        <cve>CVE-2018-14335</cve>
+    </suppress>
+
+    <suppress>
+        <notes>False positive. Wrong lib matched</notes>
+        <cve>CVE-2022-45688</cve>
+    </suppress>
+
+    <suppress>
+        <notes>False positive. CVE is up to 30.0 Project uses 31.1</notes>
+        <cve>CVE-2020-8908</cve>
     </suppress>
 
 </suppressions>
