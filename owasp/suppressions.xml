@@ -50,4 +50,14 @@
         <cve>CVE-2020-8908</cve>
     </suppress>
 
+    <suppress>
+        <notes>No recent version with fix available</notes>
+        <cve>CVE-2023-20859</cve>
+    </suppress>
+
+    <suppress>
+        <notes>Issue adresses Keycloak Server and not Lib</notes>
+        <cve>CVE-2023-1664</cve>
+    </suppress>
+
 </suppressions>
